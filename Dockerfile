@@ -1,7 +1,8 @@
 FROM fedora:25
 
 RUN dnf -y update && \
-    dnf -y install vim flatpak flatpak-builder && \
+    dnf -y install vim bzip2 \
+                   flatpak flatpak-builder && \
     dnf -y group install "Development Tools" && \
     dnf -y group install "C Development Tools and Libraries" && \
     dnf -y clean all
