@@ -1,11 +1,15 @@
 FROM fedora:25
 
 RUN dnf -y update && \
-    dnf -y install sudo git vim flatpak flatpak-builder && \
+    dnf -y install vim flatpak flatpak-builder && \
+    dnf -y group install "Development Tools" && \
+    dnf -y group install "C Development Tools and Libraries" && \
     dnf -y clean all
 
-RUN useradd --create-home --shell '/bin/bash' flatpak
-USER flatpak
-WORKDIR /home/flatpak
+ARG user=flatpak
+RUN useradd --create-home --shell '/bin/bash' $user && \
+    usermod $user -a -G wheel
+USER $user
+WORKDIR /home/$user
 
 ENTRYPOINT ["/bin/bash"]
