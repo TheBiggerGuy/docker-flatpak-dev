@@ -1,6 +1,8 @@
 FROM fedora:25
 
-RUN dnf install -y sudo git vim flatpak flatpak-builder
+RUN dnf -y update && \
+    dnf -y install sudo git vim flatpak flatpak-builder && \
+    dnf -y clean all
 
 RUN useradd --create-home --shell '/bin/bash' flatpak
 USER flatpak
