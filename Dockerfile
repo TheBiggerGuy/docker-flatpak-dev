@@ -12,5 +12,6 @@ RUN useradd --create-home --shell '/bin/bash' $user && \
     usermod $user -a -G wheel
 USER $user
 WORKDIR /home/$user
+VOLUME /home/$user
 
 ENTRYPOINT ["/bin/bash"]
